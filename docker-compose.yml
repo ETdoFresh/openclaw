@@ -13,9 +13,6 @@ services:
     volumes:
       - ${OPENCLAW_CONFIG_DIR}:/home/node/.openclaw:z
       - ${OPENCLAW_WORKSPACE_DIR}:/home/node/.openclaw/workspace:z
-    expose:
-      - "18789"
-      - "18790"
     init: true
     restart: unless-stopped
     command:
