@@ -37,6 +37,11 @@ RUN chown -R node:node /app
 # Security hardening: Run as non-root user
 # The node:22-bookworm image includes a 'node' user (uid 1000)
 # This reduces the attack surface by preventing container escape via root privileges
+# Copy default config if no config is mounted
+RUN mkdir -p /home/node/.openclaw && chown node:node /home/node/.openclaw
+COPY openclaw.default.json /home/node/.openclaw/openclaw.json
+RUN chown node:node /home/node/.openclaw/openclaw.json
+
 USER node
 
 # Start gateway server with default config.
